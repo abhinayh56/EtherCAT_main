@@ -60,11 +60,11 @@ public:
         return connection_status;
     }
 
-    void monitor_status() {}
-
     virtual void register_tx_pdo() {}
 
     virtual void register_rx_pdo() {}
+
+    void monitor_status() {}
 
     void transfer_tx_pdo() {}
 
