@@ -4,7 +4,7 @@
 class Data_transfer
 {
 public:
-    virtual void config_data_transfer() {}
+    virtual void register_data_transfer() {}
 
     virtual void publish_data() {}
 

@@ -12,9 +12,11 @@ public:
 
     // uint16_t get_slave_address() const {}
 
+    // void set_slave_info() {}
+
     // void get_slave_info() {}
 
-    virtual void config_slave(ec_master_t *master) {}
+    // void config_slave(ec_master_t *master) {}
 
     // bool is_connected() {}
 
@@ -24,15 +26,15 @@ public:
 
     // void monitor_status() {}
 
-    virtual void transfer_tx_pdo() {}
+    // void transfer_tx_pdo() {}
 
-    virtual void transfer_rx_pdo() {}
+    // void transfer_rx_pdo() {}
 
     virtual void process_tx_pdo() {}
 
     virtual void process_rx_pdo() {}
 
-    virtual void config_data_transfer() {}
+    virtual void register_data_transfer() {}
 
     virtual void publish_data() {}
 

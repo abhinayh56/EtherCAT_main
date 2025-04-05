@@ -40,9 +40,11 @@ public:
         return slave_address;
     }
 
+    void set_slave_info() {}
+
     void get_slave_info() {}
 
-    virtual void config_slave(ec_master_t *master)
+    void config_slave(ec_master_t *master)
     {
         // set_slave_name(const std::string &slave_name_)
         // set_slave_address(const uint16_t slave_address_)
@@ -59,14 +61,14 @@ public:
     }
 
     void monitor_status() {}
-    
+
     virtual void register_tx_pdo() {}
 
     virtual void register_rx_pdo() {}
 
-    virtual void transfer_tx_pdo() {}
+    void transfer_tx_pdo() {}
 
-    virtual void transfer_rx_pdo() {}
+    void transfer_rx_pdo() {}
 
     virtual void process_tx_pdo() {}
 
