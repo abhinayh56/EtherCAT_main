@@ -12,7 +12,7 @@ public:
 
     // uint16_t get_slave_address() const {}
 
-    void get_slave_info() {}
+    // void get_slave_info() {}
 
     virtual void config_slave(ec_master_t *master) {}
 
@@ -22,7 +22,7 @@ public:
 
     virtual void register_rx_pdo() {}
 
-    virtual void monitor_status() {}
+    // void monitor_status() {}
 
     virtual void transfer_tx_pdo() {}
 

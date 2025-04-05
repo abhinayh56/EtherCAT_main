@@ -58,11 +58,11 @@ public:
         return connection_status;
     }
 
+    void monitor_status() {}
+    
     virtual void register_tx_pdo() {}
 
     virtual void register_rx_pdo() {}
-
-    virtual void monitor_status() {}
 
     virtual void transfer_tx_pdo() {}
 
