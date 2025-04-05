@@ -9,8 +9,8 @@
 class EtherCAT_master
 {
 public:
-    EtherCAT_master(){};
-    ~EtherCAT_master(){};
+    EtherCAT_master() {};
+    ~EtherCAT_master() {};
 
     void add_slave(EtherCAT_slave_base *new_slave)
     {
