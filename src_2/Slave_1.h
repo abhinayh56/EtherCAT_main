@@ -4,6 +4,10 @@
 class Slave_1 : public EtherCAT_slave_base
 {
 public:
+    Slave_1() {};
+    
+    ~Slave_1() {}
+
     // void set_slave_name(const std::string &slave_name_) {}
 
     // std::string &get_slave_name() const {}
