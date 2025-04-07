@@ -50,6 +50,8 @@
         "chrono": "cpp",
         "variant": "cpp",
         "cstdarg": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "bitset": "cpp",
+        "span": "cpp"
     }
 }
