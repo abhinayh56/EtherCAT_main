@@ -39,10 +39,10 @@ bool EtherCAT_master::start()
 
 void EtherCAT_master::config()
 {
-    config_data_transfer();
+    config_slaves_data_transfer();
     create_domain();
-    configure_slaves();
-    register_pdo_to_domain();
+    config_slaves();
+    register_slaves_pdo_to_domain();
     activate();
     get_domain_process_data();
     set_domain_process_data();
@@ -128,7 +128,7 @@ bool EtherCAT_master::create_domain()
     }
 }
 
-void EtherCAT_master::configure_slaves()
+void EtherCAT_master::config_slaves()
 {
     LOG_CONSOLE_INFO("Configuring slaves...", 1);
     for (int i = 0; i < num_slaves; i++)
@@ -142,7 +142,7 @@ void EtherCAT_master::configure_slaves()
     LOG_CONSOLE_INFO("Configured all slaves", 1);
 }
 
-void EtherCAT_master::config_data_transfer()
+void EtherCAT_master::config_slaves_data_transfer()
 {
     LOG_CONSOLE_INFO("Configuring data transfer of slaves...", 1);
     for (int i = 0; i < num_slaves; i++)
@@ -156,7 +156,7 @@ void EtherCAT_master::config_data_transfer()
     LOG_CONSOLE_INFO("Configured data transfer of all slave ", 1);
 }
 
-void EtherCAT_master::register_pdo_to_domain()
+void EtherCAT_master::register_slaves_pdo_to_domain()
 {
     LOG_CONSOLE_INFO("Registering pdos", 1);
     for (int i = 0; i < num_slaves; i++)
