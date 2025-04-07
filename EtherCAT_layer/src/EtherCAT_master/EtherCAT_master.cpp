@@ -20,14 +20,28 @@ void EtherCAT_master::add_slave(EtherCAT_slave_base *new_slave)
     LOG_CONSOLE_INFO(num_slaves, 1);
 }
 
+bool EtherCAT_master::start()
+{
+    LOG_CONSOLE_INFO("Creating master...", 1);
+
+    master = ecrt_request_master(0);
+    if (master)
+    {
+        LOG_CONSOLE_INFO("Master creation successful", 1);
+        return true;
+    }
+    else
+    {
+        LOG_CONSOLE_ERROR("Master creation failed", 1);
+        return false;
+    }
+}
+
 void EtherCAT_master::config()
 {
     // Perform master configuration
     // Scan for slaves and bus configuration
     // Perform slave configuration
-
-    // 1. Start master
-    start();
 
     // 2. Create domain
     create_domain();
@@ -129,23 +143,6 @@ void EtherCAT_master::cyclic_task()
     else
     {
         stop();
-    }
-}
-
-bool EtherCAT_master::start()
-{
-    LOG_CONSOLE_INFO("Creating master...", 1);
-
-    master = ecrt_request_master(0);
-    if (master)
-    {
-        LOG_CONSOLE_INFO("Master creation successful", 1);
-        return true;
-    }
-    else
-    {
-        LOG_CONSOLE_ERROR("Master creation failed", 1);
-        return false;
     }
 }
 

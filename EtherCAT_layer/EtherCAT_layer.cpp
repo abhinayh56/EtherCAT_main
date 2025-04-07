@@ -14,6 +14,8 @@ int main()
     ec_master.add_slave(&slave_1);
     ec_master.add_slave(&slave_2);
 
+    ec_master.start();
+
     ec_master.config();
 
     while (ec_master.run)

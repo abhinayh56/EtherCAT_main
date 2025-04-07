@@ -17,6 +17,7 @@ public:
     EtherCAT_master(); // done
     ~EtherCAT_master(); // done
     void add_slave(EtherCAT_slave_base *new_slave); // done
+    bool start(); // done
     void config(); // done
     void cyclic_task(); // done
 
@@ -32,7 +33,6 @@ private:
     unsigned int num_slaves = 0;
     std::vector<EtherCAT_slave_base *> slave_base_arr;
 
-    bool start(); // done
     bool stop(); // stop
     bool create_domain(); // done
     void configure_slaves(); // done
