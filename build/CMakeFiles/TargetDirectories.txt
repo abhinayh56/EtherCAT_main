@@ -1,3 +1,0 @@
-/home/abhinayh56/Abhinay/Ethercat_IGH/EtherCAT_main/build/CMakeFiles/EtherCAT_main.dir
-/home/abhinayh56/Abhinay/Ethercat_IGH/EtherCAT_main/build/CMakeFiles/edit_cache.dir
-/home/abhinayh56/Abhinay/Ethercat_IGH/EtherCAT_main/build/CMakeFiles/rebuild_cache.dir
