@@ -44,12 +44,6 @@ public:
     virtual void publish_data() {}
 
     virtual void subscribe_data() {}
-
-protected:
-    // bool connection_status = false;
-    // ec_slave_config_t *sc;
-    // ec_slave_config_state_t sc_state;
-    // uint8_t *domain_1_pd = NULL;
 };
 
 #endif // ETHERCAT_SLAVE_BASE_H
