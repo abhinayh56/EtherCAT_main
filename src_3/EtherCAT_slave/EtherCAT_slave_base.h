@@ -5,7 +5,8 @@
 #include <string>
 #include <stdint.h>
 #include <iostream>
-#include "Data_transfer.h"
+#include "../Common/Data_transfer.h"
+#include "../Logger/Logger_console/Logger_console.h"
 
 struct Slave_info
 {

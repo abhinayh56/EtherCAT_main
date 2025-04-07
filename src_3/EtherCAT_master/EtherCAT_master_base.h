@@ -5,7 +5,8 @@
 #include <vector>
 #include <iostream>
 #include "Data_transfer.h"
-#include "EtherCAT_slave_base.h"
+#include "../Logger/Logger_console/Logger_console.h"
+#include "../EtherCAT_slave/EtherCAT_slave_base.h"
 
 class EtherCAT_master_base : public Data_transfer
 {

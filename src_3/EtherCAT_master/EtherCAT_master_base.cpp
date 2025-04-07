@@ -100,7 +100,8 @@ void EtherCAT_master_base::cyclic_task()
 
 bool EtherCAT_master_base::start()
 {
-    std::cout << "creating master..." << std::endl;
+    LOG_CONSOLE_INFO("Creating master...");
+
     master = ecrt_request_master(0);
     if (master)
     {
