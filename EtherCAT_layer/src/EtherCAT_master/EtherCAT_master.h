@@ -36,13 +36,13 @@ private:
     bool stop();
     bool create_domain();
     void configure_slaves();
-    void config_data_transfer();
-    void register_pdo_to_domain();
+    void config_slaves_data_transfer();
+    void register_slaves_pdo_to_domain();
     bool activate();
     bool get_domain_process_data();
     void set_domain_process_data();
+    
     void monitor_status();
-
     void transfer_tx_pdo();
     void process_tx_pdo();
     void publish_data();
