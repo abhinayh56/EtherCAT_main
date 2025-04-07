@@ -1,12 +1,15 @@
+#ifndef ETHERCAT_SLAVE_1_H
+#define ETHERCAT_SLAVE_1_H
+
 #include <iostream>
 #include "EtherCAT_slave_base.h"
 
-class Slave_1 : public EtherCAT_slave_base
+class EtherCAT_slave_1 : public EtherCAT_slave_base
 {
 public:
-    Slave_1() {};
+    EtherCAT_slave_1() {};
     
-    ~Slave_1() {}
+    ~EtherCAT_slave_1() {}
     
 
     // void set_slave_name(const std::string &slave_name_) {}
@@ -52,4 +55,4 @@ protected:
     // uint8_t *domain_1_pd = NULL;
 };
 
-#endif // ETHERCAT_SLAVE_BASE_H
+#endif // ETHERCAT_SLAVE_1_H
