@@ -32,13 +32,12 @@ void EtherCAT_master_base::config()
     // 2. Create domain
     create_domain();
 
-    config_slave();
-    register_tx_pdo();
-    register_rx_pdo();
-    config_data_transfer();
-
     // 3. Configure slave_i; i = 0, 1, ...
     configure_slaves();
+
+    register_pdo();
+
+    register_data_transfer();
 
     // 4. Create PDO configuration for slave_i; i = 0, 1, ...
     create_pdo_config();
@@ -186,6 +185,35 @@ void EtherCAT_master_base::configure_slaves()
         slave_base_arr[i]->config_slave(master);
     }
     LOG_CONSOLE_INFO("Configured all slaves", 1);
+}
+
+void EtherCAT_master_base::register_pdo()
+{
+    LOG_CONSOLE_INFO("Registering pdo of slaves...", 1);
+    for (int i = 0; i < num_slaves; i++)
+    {
+        LOG_CONSOLE_INFO("Registering pdo of slave ", 0);
+        LOG_CONSOLE_INFO(i, 0);
+        LOG_CONSOLE_INFO(" of ", 0);
+        LOG_CONSOLE_INFO(num_slaves, 1);
+        slave_base_arr[i]->register_tx_pdo();
+        slave_base_arr[i]->register_rx_pdo();
+    }
+    LOG_CONSOLE_INFO("Registered pdos of all slaves", 1);
+}
+
+void EtherCAT_master_base::register_data_transfer()
+{
+    LOG_CONSOLE_INFO("Configuring data transfer of slaves...", 1);
+    for (int i = 0; i < num_slaves; i++)
+    {
+        LOG_CONSOLE_INFO("Configuring data transfer of slave ", 0);
+        LOG_CONSOLE_INFO(i, 0);
+        LOG_CONSOLE_INFO(" of ", 0);
+        LOG_CONSOLE_INFO(num_slaves, 1);
+        slave_base_arr[i]->register_data_transfer();
+    }
+    LOG_CONSOLE_INFO("Configured data transfer of all slave ", 1);
 }
 
 void EtherCAT_master_base::create_pdo_config()

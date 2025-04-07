@@ -17,7 +17,7 @@ public:
     EtherCAT_master_base(); // done
     ~EtherCAT_master_base(); // done
     void add_slave(EtherCAT_slave_base *new_slave); // done
-    void config();
+    void config(); // done
     void cyclic_task(); // done
 
 protected:
@@ -36,6 +36,8 @@ private:
     bool stop(); // stop
     bool create_domain(); // done
     void configure_slaves(); // done
+    void register_pdo(); // done
+    void config_data_transfer() // done
     void create_pdo_config(); // done
     void register_pdo_group(); // done
     bool activate(); // done
