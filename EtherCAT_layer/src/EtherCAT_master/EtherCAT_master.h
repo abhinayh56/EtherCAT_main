@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Data_transfer.h"
 #include "../Logger/Logger_console/Logger_console.h"
-#include "../EtherCAT_slave/EtherCAT_slave_base.h"
+#include "../EtherCAT_slave_base/EtherCAT_slave_base.h"
 
 #define CYCLIC_SLAVE_CALL_PARALLEL
 // #define CYCLIC_SLAVE_CALL_SEQUENTIAL
