@@ -39,25 +39,17 @@ bool EtherCAT_master::start()
 
 void EtherCAT_master::config()
 {
-    // Perform master configuration
-    // Scan for slaves and bus configuration
-    // Perform slave configuration
+    // register data publish and subscribe
+    config_data_transfer();
 
-    // 2. Create domain
+    // 1. Create domain
     create_domain();
 
-    // 3. Configure slave_i; i = 0, 1, ...
+    // 2. Configure slave_i; i = 0, 1, ...
     configure_slaves();
 
-    register_pdo();
-
-    register_data_transfer();
-
-    // 4. Create PDO configuration for slave_i; i = 0, 1, ...
-    create_pdo_config();
-
     // 5. Register group of PDOs to a domain
-    register_pdo_group();
+    register_pdo_to_domain();
 
     // 6. Finishes configuration and activates master
     activate();
@@ -84,7 +76,7 @@ void EtherCAT_master::cyclic_task()
         // 3. Reads the state of a domain
         ecrt_domain_state(domain_1, &domain_1_state);
 
-        #ifdef CYCLIC_SLAVE_CALL_PARALLEL
+#ifdef CYCLIC_SLAVE_CALL_PARALLEL
         // 4. Monitor status
         monitor_status();
 
@@ -105,9 +97,9 @@ void EtherCAT_master::cyclic_task()
 
         // 10. Transfer rx_pdo
         transfer_rx_pdo();
-        #endif // CYCLIC_SLAVE_CALL_PARALLEL
+#endif // CYCLIC_SLAVE_CALL_PARALLEL
 
-        #ifdef CYCLIC_SLAVE_CALL_SEQUENTIAL
+#ifdef CYCLIC_SLAVE_CALL_SEQUENTIAL
         for (int i = 0; i < num_slaves; i++)
         {
             // 4. Monitor status
@@ -131,7 +123,7 @@ void EtherCAT_master::cyclic_task()
             // 10. Transfer rx_pdo
             slave_base_arr[i]->transfer_rx_pdo();
         }
-        #endif // CYCLIC_SLAVE_CALL_SEQUENTIAL
+#endif // CYCLIC_SLAVE_CALL_SEQUENTIAL
 
         // 11. Send process data
         ecrt_domain_queue(domain_1);
@@ -189,22 +181,7 @@ void EtherCAT_master::configure_slaves()
     LOG_CONSOLE_INFO("Configured all slaves", 1);
 }
 
-void EtherCAT_master::register_pdo()
-{
-    LOG_CONSOLE_INFO("Registering pdo of slaves...", 1);
-    for (int i = 0; i < num_slaves; i++)
-    {
-        LOG_CONSOLE_INFO("Registering pdo of slave ", 0);
-        LOG_CONSOLE_INFO(i, 0);
-        LOG_CONSOLE_INFO(" of ", 0);
-        LOG_CONSOLE_INFO(num_slaves, 1);
-        slave_base_arr[i]->register_tx_pdo();
-        slave_base_arr[i]->register_rx_pdo();
-    }
-    LOG_CONSOLE_INFO("Registered pdos of all slaves", 1);
-}
-
-void EtherCAT_master::register_data_transfer()
+void EtherCAT_master::config_data_transfer()
 {
     LOG_CONSOLE_INFO("Configuring data transfer of slaves...", 1);
     for (int i = 0; i < num_slaves; i++)
@@ -213,26 +190,12 @@ void EtherCAT_master::register_data_transfer()
         LOG_CONSOLE_INFO(i, 0);
         LOG_CONSOLE_INFO(" of ", 0);
         LOG_CONSOLE_INFO(num_slaves, 1);
-        slave_base_arr[i]->register_data_transfer();
+        slave_base_arr[i]->config_data_transfer();
     }
     LOG_CONSOLE_INFO("Configured data transfer of all slave ", 1);
 }
 
-void EtherCAT_master::create_pdo_config()
-{
-    LOG_CONSOLE_INFO("Configuring pdos...", 1);
-    for (int i = 0; i < num_slaves; i++)
-    {
-        LOG_CONSOLE_INFO("Configuring pdos of slave ", 0);
-        LOG_CONSOLE_INFO(i, 0);
-        LOG_CONSOLE_INFO(" of ", 0);
-        LOG_CONSOLE_INFO(num_slaves, 1);
-        slave_base_arr[i]->config_pdo();
-    }
-    LOG_CONSOLE_INFO("Configured all pdos", 1);
-}
-
-void EtherCAT_master::register_pdo_group()
+void EtherCAT_master::register_pdo_to_domain()
 {
     LOG_CONSOLE_INFO("Registering pdos", 1);
     for (int i = 0; i < num_slaves; i++)
@@ -241,7 +204,7 @@ void EtherCAT_master::register_pdo_group()
         LOG_CONSOLE_INFO(i, 0);
         LOG_CONSOLE_INFO(" of ", 0);
         LOG_CONSOLE_INFO(num_slaves, 1);
-        slave_base_arr[i]->register_pdo_group(domain_1);
+        slave_base_arr[i]->register_pdo_to_domain(domain_1);
     }
     LOG_CONSOLE_INFO("Registered all pdos", 1);
 }
