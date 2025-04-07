@@ -1,13 +1,23 @@
 #include "EtherCAT_master_base.h"
 
-EtherCAT_master_base::EtherCAT_master_base() {}
+EtherCAT_master_base::EtherCAT_master_base()
+{
+    LOG_CONSOLE_INFO("Object of master created", 1);
+}
 
-EtherCAT_master_base::~EtherCAT_master_base() {}
+EtherCAT_master_base::~EtherCAT_master_base()
+{
+    LOG_CONSOLE_INFO("Object of master destroyed", 1);
+    stop();
+}
 
 void EtherCAT_master_base::add_slave(EtherCAT_slave_base *new_slave)
 {
+    LOG_CONSOLE_INFO("Assigning new slave to master", 1);
     slave_base_arr.push_back(new_slave);
     num_slaves = slave_base_arr.size();
+    LOG_CONSOLE_INFO("Total number of slaves assigned to master are ", 0);
+    LOG_CONSOLE_INFO(num_slaves, 1);
 }
 
 void EtherCAT_master_base::config()
@@ -61,6 +71,7 @@ void EtherCAT_master_base::cyclic_task()
         // 3. Reads the state of a domain
         ecrt_domain_state(domain_1, &domain_1_state);
 
+        #ifdef CYCLIC_SLAVE_CALL_PARALLEL
         // 4. Monitor status
         monitor_status();
 
@@ -81,6 +92,33 @@ void EtherCAT_master_base::cyclic_task()
 
         // 10. Transfer rx_pdo
         transfer_rx_pdo();
+        #endif // CYCLIC_SLAVE_CALL_PARALLEL
+
+        #ifdef CYCLIC_SLAVE_CALL_SEQUENTIAL
+        for (int i = 0; i < num_slaves; i++)
+        {
+            // 4. Monitor status
+            slave_base_arr[i]->monitor_status();
+
+            // 5. Transfer tx_pdo
+            slave_base_arr[i]->transfer_tx_pdo();
+
+            // 6. Process tx_pdo
+            slave_base_arr[i]->process_tx_pdo();
+
+            // 7. Publish tx_pdo data
+            slave_base_arr[i]->publish_data();
+
+            // 8. Subscribe rx_pdo data
+            slave_base_arr[i]->subscribe_data();
+
+            // 9. Process rx_pdo data
+            slave_base_arr[i]->process_rx_pdo();
+
+            // 10. Transfer rx_pdo
+            slave_base_arr[i]->transfer_rx_pdo();
+        }
+        #endif // CYCLIC_SLAVE_CALL_SEQUENTIAL
 
         // 11. Send process data
         ecrt_domain_queue(domain_1);
@@ -88,9 +126,6 @@ void EtherCAT_master_base::cyclic_task()
 
         // 9. Check master state
         ecrt_master_state(master, &master_state);
-
-        // 10. Check of slave_i; i = 0, 1, ...
-        // TODO
     }
     else
     {

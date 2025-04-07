@@ -8,14 +8,17 @@
 #include "../Logger/Logger_console/Logger_console.h"
 #include "../EtherCAT_slave/EtherCAT_slave_base.h"
 
+#define CYCLIC_SLAVE_CALL_PARALLEL
+// #define CYCLIC_SLAVE_CALL_SEQUENTIAL
+
 class EtherCAT_master_base : public Data_transfer
 {
 public:
-    EtherCAT_master_base();
-    ~EtherCAT_master_base();
-    void add_slave(EtherCAT_slave_base *new_slave);
+    EtherCAT_master_base(); // done
+    ~EtherCAT_master_base(); // done
+    void add_slave(EtherCAT_slave_base *new_slave); // done
     void config();
-    void cyclic_task();
+    void cyclic_task(); // done
 
 protected:
     ec_master_t *master = NULL;
