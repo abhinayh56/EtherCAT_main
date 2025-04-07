@@ -32,12 +32,13 @@ public:
     void get_slave_info();
     void config_slave(ec_master_t *master);
     bool is_connected();
+    void register_pdo_to_domain();
+    void register_tx_pdo();
+    void register_rx_pdo();
+    void set_domain();
     void monitor_status();
     void transfer_tx_pdo();
     void transfer_rx_pdo();
-
-    virtual void register_tx_pdo();
-    virtual void register_rx_pdo();
     virtual void process_tx_pdo();
     virtual void process_rx_pdo();
 

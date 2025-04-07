@@ -15,7 +15,7 @@ public:
 
     virtual void register_rx_pdo() {}
 
-    virtual void register_data_transfer() {}
+    virtual void config_data_transfer() {}
 
     virtual void process_tx_pdo() {}
 
