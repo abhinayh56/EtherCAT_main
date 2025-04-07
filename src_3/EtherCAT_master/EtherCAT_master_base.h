@@ -29,22 +29,22 @@ private:
     unsigned int num_slaves = 0;
     std::vector<EtherCAT_slave_base *> slave_base_arr;
 
-    bool start();
-    bool stop();
-    bool create_domain();
-    void configure_slaves();
-    void create_pdo_config();
-    void register_pdo_group();
-    bool activate();
-    bool get_domain_process_data();
-    void set_domain_process_data();
-    void monitor_status();
-    void transfer_tx_pdo();
-    void process_tx_pdo();
-    void publish_data();
-    void subscribe_data();
-    void process_rx_pdo();
-    void transfer_rx_pdo();
+    bool start(); // done
+    bool stop(); // stop
+    bool create_domain(); // done
+    void configure_slaves(); // done
+    void create_pdo_config(); // done
+    void register_pdo_group(); // done
+    bool activate(); // done
+    bool get_domain_process_data(); // done
+    void set_domain_process_data(); // done
+    void monitor_status(); // done
+    void transfer_tx_pdo(); // done
+    void process_tx_pdo(); // done
+    void publish_data(); // done
+    void subscribe_data(); // done
+    void process_rx_pdo(); // done
+    void transfer_rx_pdo(); // done
 };
 
 #endif // ETHERCAT_MASTER_BASE_H

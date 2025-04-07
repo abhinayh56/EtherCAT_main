@@ -100,104 +100,127 @@ void EtherCAT_master_base::cyclic_task()
 
 bool EtherCAT_master_base::start()
 {
-    LOG_CONSOLE_INFO("Creating master...");
+    LOG_CONSOLE_INFO("Creating master...", 1);
 
     master = ecrt_request_master(0);
     if (master)
     {
-        std::cout << "master creation done" << std::endl;
+        LOG_CONSOLE_INFO("Master creation successful", 1);
         return true;
     }
     else
     {
-        std::cout << "master creation failed" << std::endl;
+        LOG_CONSOLE_ERROR("Master creation failed", 1);
         return false;
     }
 }
 
 bool EtherCAT_master_base::stop()
 {
-    std::cout << "stopping master..." << std::endl;
+    LOG_CONSOLE_INFO("Stopping master...", 1);
     ecrt_release_master(master);
-    std::cout << "master stopped" << std::endl;
+    LOG_CONSOLE_INFO("Master stopped", 1);
     return true;
 }
 
 bool EtherCAT_master_base::create_domain()
 {
-    std::cout << "creating domain..." << std::endl;
+    LOG_CONSOLE_INFO("Creating domain...", 1);
     domain_1 = ecrt_master_create_domain(master);
     if (domain_1)
     {
-        std::cout << "domain creation done" << std::endl;
+        LOG_CONSOLE_INFO("Domain creation successful", 1);
         return true;
     }
     else
     {
-        std::cout << "domain creation failed" << std::endl;
+        LOG_CONSOLE_ERROR("Domain creation failed, 1")
         return false;
     }
 }
 
 void EtherCAT_master_base::configure_slaves()
 {
-    std::cout << "configuring slaves..." << std::endl;
+    LOG_CONSOLE_INFO("Configuring slaves...", 1);
     for (int i = 0; i < num_slaves; i++)
     {
-        std::cout << "configuring slave " << i << "..." << std::endl;
+        LOG_CONSOLE_INFO("Configuring slave ", 0);
+        LOG_CONSOLE_INFO(i, 0);
+        LOG_CONSOLE_INFO(" of ", 0);
+        LOG_CONSOLE_INFO(num_slaves, 1);
         slave_base_arr[i]->config_slave(master);
     }
+    LOG_CONSOLE_INFO("Configured all slaves", 1);
 }
 
 void EtherCAT_master_base::create_pdo_config()
 {
-    std::cout << "configuring pdos..." << std::endl;
+    LOG_CONSOLE_INFO("Configuring pdos...", 1);
     for (int i = 0; i < num_slaves; i++)
     {
-        std::cout << "configuring pdos for slave " << i << "..." << std::endl;
+        LOG_CONSOLE_INFO("Configuring pdos of slave ", 0);
+        LOG_CONSOLE_INFO(i, 0);
+        LOG_CONSOLE_INFO(" of ", 0);
+        LOG_CONSOLE_INFO(num_slaves, 1);
         slave_base_arr[i]->config_pdo();
     }
+    LOG_CONSOLE_INFO("Configured all pdos", 1);
 }
 
 void EtherCAT_master_base::register_pdo_group()
 {
-    std::cout << "registering pdos..." << std::endl;
+    LOG_CONSOLE_INFO("Registering pdos", 1);
     for (int i = 0; i < num_slaves; i++)
     {
-        std::cout << "registering pdos for slave " << i << "..." << std::endl;
+        LOG_CONSOLE_INFO("Registering pdos for slave ", 0);
+        LOG_CONSOLE_INFO(i, 0);
+        LOG_CONSOLE_INFO(" of ", 0);
+        LOG_CONSOLE_INFO(num_slaves, 1);
         slave_base_arr[i]->register_pdo_group(domain_1);
     }
+    LOG_CONSOLE_INFO("Registered all pdos", 1);
 }
 
 bool EtherCAT_master_base::activate()
 {
+    LOG_CONSOLE_INFO("Activating master...", 1);
     if (!ecrt_master_activate(master))
     {
+        LOG_CONSOLE_INFO("Master activated successfully", 1);
         return true;
     }
     else
     {
+        LOG_CONSOLE_ERROR("Failed to activate master", 1);
         return false;
     }
 }
 
 bool EtherCAT_master_base::get_domain_process_data()
 {
+    LOG_CONSOLE_INFO("Getting pointer to domain process data...", 1);
     domain_1_pd = ecrt_domain_data(domain_1);
     if (domain_1_pd)
     {
+        LOG_CONSOLE_INFO("Domain process data pointer get successful", 1);
         return true;
     }
     else
     {
+        LOG_CONSOLE_ERROR("Failed to get domain process data pointer", 1);
         return false;
     }
 }
 
 void EtherCAT_master_base::set_domain_process_data()
 {
+    LOG_CONSOLE_INFO("Providing pointer to domain process data...", 1);
     for (int i = 0; i < num_slaves; i++)
     {
+        LOG_CONSOLE_INFO("Providing pointer to domain process data to slave ", 0);
+        LOG_CONSOLE_INFO(i, 0);
+        LOG_CONSOLE_INFO(" of ", 0);
+        LOG_CONSOLE_INFO(num_slaves, 1);
         slave_base_arr[i]->set_domain(domain_1_pd);
     }
 }
