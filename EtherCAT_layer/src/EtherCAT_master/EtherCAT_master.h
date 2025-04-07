@@ -14,13 +14,13 @@
 class EtherCAT_master : public Data_transfer
 {
 public:
-    EtherCAT_master();                              // done
-    ~EtherCAT_master();                             // done
-    void add_slave(EtherCAT_slave_base *new_slave); // done
-    bool start();                                   // done
-    void config();                                  // done
-    void cyclic_task();                             // done
-    bool is_running();                              // done
+    EtherCAT_master();
+    ~EtherCAT_master();
+    void add_slave(EtherCAT_slave_base *new_slave);
+    bool start();
+    void config();
+    void cyclic_task();
+    bool is_running();
 
 private:
     unsigned int num_slaves = 0;
@@ -33,22 +33,22 @@ private:
     uint8_t *domain_1_pd = NULL;
     bool run = false;
 
-    bool stop();                    // stop
-    bool create_domain();           // done
-    void configure_slaves();        // done
-    void config_data_transfer();    // done
-    void register_pdo_to_domain();  // done
-    bool activate();                // done
-    bool get_domain_process_data(); // done
-    void set_domain_process_data(); // done
-    void monitor_status();          // done
+    bool stop();
+    bool create_domain();
+    void configure_slaves();
+    void config_data_transfer();
+    void register_pdo_to_domain();
+    bool activate();
+    bool get_domain_process_data();
+    void set_domain_process_data();
+    void monitor_status();
 
-    void transfer_tx_pdo(); // done
-    void process_tx_pdo();  // done
-    void publish_data();    // done
-    void subscribe_data();  // done
-    void process_rx_pdo();  // done
-    void transfer_rx_pdo(); // done
+    void transfer_tx_pdo();
+    void process_tx_pdo();
+    void publish_data();
+    void subscribe_data();
+    void process_rx_pdo();
+    void transfer_rx_pdo();
 };
 
 #endif // ETHERCAT_MASTER_H

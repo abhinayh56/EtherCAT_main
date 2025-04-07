@@ -39,25 +39,12 @@ bool EtherCAT_master::start()
 
 void EtherCAT_master::config()
 {
-    // register data publish and subscribe
     config_data_transfer();
-
-    // 1. Create domain
     create_domain();
-
-    // 2. Configure slave_i; i = 0, 1, ...
     configure_slaves();
-
-    // 5. Register group of PDOs to a domain
     register_pdo_to_domain();
-
-    // 6. Finishes configuration and activates master
     activate();
-
-    // 7. Get pointer to domain process data
     get_domain_process_data();
-
-    // 8. Provide pointer to domain process data to slaves
     set_domain_process_data();
 
     run = true;
@@ -77,50 +64,24 @@ void EtherCAT_master::cyclic_task()
         ecrt_domain_state(domain_1, &domain_1_state);
 
 #ifdef CYCLIC_SLAVE_CALL_PARALLEL
-        // 4. Monitor status
         monitor_status();
-
-        // 5. Transfer tx_pdo
         transfer_tx_pdo();
-
-        // 6. Process tx_pdo
         process_tx_pdo();
-
-        // 7. Publish tx_pdo data
         publish_data();
-
-        // 8. Subscribe rx_pdo data
         subscribe_data();
-
-        // 9. Process rx_pdo data
         process_rx_pdo();
-
-        // 10. Transfer rx_pdo
         transfer_rx_pdo();
 #endif // CYCLIC_SLAVE_CALL_PARALLEL
 
 #ifdef CYCLIC_SLAVE_CALL_SEQUENTIAL
         for (int i = 0; i < num_slaves; i++)
         {
-            // 4. Monitor status
             slave_base_arr[i]->monitor_status();
-
-            // 5. Transfer tx_pdo
             slave_base_arr[i]->transfer_tx_pdo();
-
-            // 6. Process tx_pdo
             slave_base_arr[i]->process_tx_pdo();
-
-            // 7. Publish tx_pdo data
             slave_base_arr[i]->publish_data();
-
-            // 8. Subscribe rx_pdo data
             slave_base_arr[i]->subscribe_data();
-
-            // 9. Process rx_pdo data
             slave_base_arr[i]->process_rx_pdo();
-
-            // 10. Transfer rx_pdo
             slave_base_arr[i]->transfer_rx_pdo();
         }
 #endif // CYCLIC_SLAVE_CALL_SEQUENTIAL
