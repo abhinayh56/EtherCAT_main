@@ -20,18 +20,18 @@ public:
     bool start(); // done
     void config(); // done
     void cyclic_task(); // done
+    bool is_running(); // done
 
-protected:
+private:
+    unsigned int num_slaves = 0;
+    std::vector<EtherCAT_slave_base *> slave_base_arr;
+
     ec_master_t *master = NULL;
     ec_master_state_t master_state = {};
     ec_domain_t *domain_1 = NULL;
     ec_domain_state_t domain_1_state = {};
     uint8_t *domain_1_pd = NULL;
     bool run = false;
-
-private:
-    unsigned int num_slaves = 0;
-    std::vector<EtherCAT_slave_base *> slave_base_arr;
 
     bool stop(); // stop
     bool create_domain(); // done

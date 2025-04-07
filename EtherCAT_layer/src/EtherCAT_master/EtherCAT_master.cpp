@@ -146,6 +146,11 @@ void EtherCAT_master::cyclic_task()
     }
 }
 
+bool EtherCAT_master::is_running()
+{
+    return run;
+}
+
 bool EtherCAT_master::stop()
 {
     LOG_CONSOLE_INFO("Stopping master...", 1);

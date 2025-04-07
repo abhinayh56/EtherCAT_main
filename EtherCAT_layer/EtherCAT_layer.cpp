@@ -18,7 +18,7 @@ int main()
 
     ec_master.config();
 
-    while (ec_master.run)
+    while (ec_master.is_running())
     {
         ec_master.cyclic_task();
         usleep(4000);
