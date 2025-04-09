@@ -19,12 +19,16 @@ struct Slave_info
     ec_sync_info_t *slave_syncs;
 };
 
-struct Pdo_list
+template <uint16_t index_, uint8_t subindex_, typenamet T_value>
+struct Pdo_variable
 {
-    uint16_t index;
-    uint8_t subindex;
-    uint8_t bit_length;
-}
+    uint16_t index = index_ = 0;
+    uint8_t subindex = sub_index_ = 0;
+    uint32_t *offset = NULL;
+    uint32_t *bit_position = NULL;
+    T_value value = 0;
+    bool is_supported = false;
+};
 
 class EtherCAT_slave_base : public Data_transfer
 {
