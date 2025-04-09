@@ -4,7 +4,7 @@
 #include <ecrt.h>
 #include <vector>
 #include <iostream>
-#include "Data_transfer.h"
+#include "../Common/Data_transfer.h"
 #include "../Logger/Logger_console/Logger_console.h"
 #include "../EtherCAT_slave_base/EtherCAT_slave_base.h"
 #include "../Common/EtherCAT_utils.h"
