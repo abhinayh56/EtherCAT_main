@@ -58,10 +58,10 @@ void EtherCAT_master::cyclic_task()
         ecrt_master_receive(master);
 
         // 2. Determines the states of the domain's datagrams
-        ecrt_domain_process(domain_1);
+        ecrt_domain_process(domain_i);
 
         // 3. Reads the state of a domain
-        ecrt_domain_state(domain_1, &domain_1_state);
+        ecrt_domain_state(domain_i, &domain_i_state);
 
 #ifdef CYCLIC_SLAVE_CALL_PARALLEL
         monitor_status();
@@ -87,7 +87,7 @@ void EtherCAT_master::cyclic_task()
 #endif // CYCLIC_SLAVE_CALL_SEQUENTIAL
 
         // 11. Send process data
-        ecrt_domain_queue(domain_1);
+        ecrt_domain_queue(domain_i);
         ecrt_master_send(master);
 
         // 9. Check master state
@@ -115,8 +115,8 @@ bool EtherCAT_master::stop()
 bool EtherCAT_master::create_domain()
 {
     LOG_CONSOLE_INFO("Creating domain...", 1);
-    domain_1 = ecrt_master_create_domain(master);
-    if (domain_1)
+    domain_i = ecrt_master_create_domain(master);
+    if (domain_i)
     {
         LOG_CONSOLE_INFO("Domain creation successful", 1);
         return true;
@@ -165,7 +165,7 @@ void EtherCAT_master::register_slaves_pdo_to_domain()
         LOG_CONSOLE_INFO(i, 0);
         LOG_CONSOLE_INFO(" of ", 0);
         LOG_CONSOLE_INFO(num_slaves, 1);
-        slave_base_arr[i]->register_pdo_to_domain(domain_1);
+        slave_base_arr[i]->register_pdo_to_domain(domain_i);
     }
     LOG_CONSOLE_INFO("Registered all pdos", 1);
 }
@@ -188,8 +188,8 @@ bool EtherCAT_master::activate()
 bool EtherCAT_master::get_domain_process_data()
 {
     LOG_CONSOLE_INFO("Getting pointer to domain process data...", 1);
-    domain_1_pd = ecrt_domain_data(domain_1);
-    if (domain_1_pd)
+    domain_i_pd = ecrt_domain_data(domain_i);
+    if (domain_i_pd)
     {
         LOG_CONSOLE_INFO("Domain process data pointer get successful", 1);
         return true;
@@ -210,7 +210,7 @@ void EtherCAT_master::set_domain_process_data()
         LOG_CONSOLE_INFO(i, 0);
         LOG_CONSOLE_INFO(" of ", 0);
         LOG_CONSOLE_INFO(num_slaves, 1);
-        slave_base_arr[i]->set_domain(domain_1_pd);
+        slave_base_arr[i]->set_domain(domain_i_pd);
     }
 }
 

@@ -28,9 +28,9 @@ private:
 
     ec_master_t *master = NULL;
     ec_master_state_t master_state = {};
-    ec_domain_t *domain_1 = NULL;
-    ec_domain_state_t domain_1_state = {};
-    uint8_t *domain_1_pd = NULL;
+    ec_domain_t *domain_i = NULL;
+    ec_domain_state_t domain_i_state = {};
+    uint8_t *domain_i_pd = NULL;
     bool run = false;
 
     bool stop();
