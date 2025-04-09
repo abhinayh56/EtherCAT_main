@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <iostream>
 #include "../Common/Data_transfer.h"
+#include "../Common/EtherCAT_utils.h"
 #include "../Logger/Logger_console/Logger_console.h"
 
 struct Slave_info
@@ -15,23 +16,9 @@ struct Slave_info
     uint32_t vendor_id;
     uint32_t product_code;
 
-    Rx_pdo *rx_pdo;
-    Tx_pdo *tx_pdo;
-
     ec_pdo_entry_info_t *slave_pdo_entries;
     ec_pdo_info_t *slave_pdos;
     ec_sync_info_t *slave_syncs;
-};
-
-template <uint16_t index_, uint8_t subindex_, typenamet T_value>
-struct Pdo_variable
-{
-    uint16_t index = index_ = 0;
-    uint8_t subindex = sub_index_ = 0;
-    uint32_t *offset = NULL;
-    uint32_t *bit_position = NULL;
-    T_value value = 0;
-    bool is_supported = false;
 };
 
 class EtherCAT_slave_base : public Data_transfer
