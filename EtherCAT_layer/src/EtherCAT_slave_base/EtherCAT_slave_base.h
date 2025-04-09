@@ -42,8 +42,8 @@ public:
     virtual void process_rx_pdo();
 
 protected:
-    void register_tx_pdo();
-    void register_rx_pdo();
+    virtual void register_tx_pdo();
+    virtual void register_rx_pdo();
 
 private:
     std::string slave_name;
