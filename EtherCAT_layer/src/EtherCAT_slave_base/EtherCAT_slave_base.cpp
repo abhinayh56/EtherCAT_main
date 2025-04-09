@@ -44,6 +44,10 @@ bool EtherCAT_slave_base::is_connected()
     return connection_status;
 }
 
+void EtherCAT_slave_base::register_pdo_to_domain(ec_domain_t *domain_i) {}
+
+void EtherCAT_slave_base::set_domain(uint8_t *domain_i_pd) {}
+
 void EtherCAT_slave_base::monitor_status() {}
 
 void EtherCAT_slave_base::transfer_tx_pdo() {}

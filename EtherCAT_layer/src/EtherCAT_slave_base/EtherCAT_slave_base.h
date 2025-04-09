@@ -24,6 +24,7 @@ class EtherCAT_slave_base : public Data_transfer
 public:
     EtherCAT_slave_base();
     ~EtherCAT_slave_base();
+
     void set_slave_name(const std::string &slave_name_);
     std::string &get_slave_name() const;
     void set_slave_address(const uint16_t slave_address_);
@@ -32,15 +33,17 @@ public:
     void get_slave_info();
     void config_slave(ec_master_t *master);
     bool is_connected();
-    void register_pdo_to_domain();
-    void register_tx_pdo();
-    void register_rx_pdo();
-    void set_domain();
+    void register_pdo_to_domain(ec_domain_t *domain_i);
+    void set_domain(uint8_t *domain_i_pd);
     void monitor_status();
     void transfer_tx_pdo();
     void transfer_rx_pdo();
     virtual void process_tx_pdo();
     virtual void process_rx_pdo();
+
+protected:
+    void register_tx_pdo();
+    void register_rx_pdo();
 
 private:
     std::string slave_name;
