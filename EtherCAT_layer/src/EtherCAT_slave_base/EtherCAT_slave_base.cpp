@@ -34,11 +34,24 @@ void EtherCAT_slave_base::get_slave_info() {}
 
 void EtherCAT_slave_base::config_slave(ec_master_t *master)
 {
-    // uint16_t alias = 0;
-    // uint16_t position = 9;
-    // uint32_t vendor_id = 0x00113322;
-    // uint32_t product_code = 0x00001022;
-    // connection_status = false
+    if (!(sc = ecrt_master_slave_config(master, slave_info.alias, slave_info.position, slave_info.vendor_id, slave_info.product_code)))
+    {
+        std::cout << "configuring failed for slaves " << std::endl;
+    }
+    else
+    {
+        connection_status = true;
+        std::cout << "configuring done for slaves " << std::endl;
+    }
+
+    if (ecrt_slave_config_pdos(sc, EC_END, slave_info.slave_syncs))
+    {
+        std::cout << "configuring pdo failed for slave " << std::endl;
+    }
+    else
+    {
+        std::cout << "configuring pdo done for slave " << std::endl;
+    }
 }
 
 bool EtherCAT_slave_base::is_connected()
@@ -46,9 +59,22 @@ bool EtherCAT_slave_base::is_connected()
     return connection_status;
 }
 
-void EtherCAT_slave_base::register_pdo_to_domain(ec_domain_t *domain_i) {}
+void EtherCAT_slave_base::register_pdo_to_domain(ec_domain_t *domain_i)
+{
+    if (ecrt_domain_reg_pdo_entry_list(domain_i, domain_regs))
+    {
+        fprintf(stderr, "PDO entry registration failed!\n");
+    }
+    else
+    {
+        std::cout << "PDO entry in domain successful" << std::endl;
+    }
+}
 
-void EtherCAT_slave_base::set_domain(uint8_t *domain_i_pd) {}
+void EtherCAT_slave_base::set_domain(uint8_t *domain_i_pd_)
+{
+    domain_i_pd = domain_i_pd_;
+}
 
 void EtherCAT_slave_base::monitor_status() {}
 
