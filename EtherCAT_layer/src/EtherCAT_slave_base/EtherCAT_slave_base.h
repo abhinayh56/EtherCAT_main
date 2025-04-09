@@ -20,7 +20,6 @@ public:
     void set_slave_address(const uint16_t slave_address_);
     uint16_t get_slave_address() const;
     void set_slave_info(); // TODO
-    void get_slave_info(); // TODO
     void config_slave(ec_master_t *master);
     bool is_connected();
     void register_pdo_to_domain(ec_domain_t *domain_i); // TODO
@@ -30,25 +29,18 @@ public:
     void transfer_rx_pdo(); // TODO
     virtual void process_tx_pdo() = 0;
     virtual void process_rx_pdo() = 0;
+    virtual void register_tx_pdo(Pdo_variable *tx_pdo_list_) = 0;
+    virtual void register_rx_pdo(Pdo_variable *rx_pdo_list_) = 0;
 
 protected:
-    virtual void register_tx_pdo(Pdo_info *tx_pdo_list_) = 0;
-    virtual void register_rx_pdo(Pdo_info *rx_pdo_list_) = 0;
-
-private:
     std::string slave_name;
     uint16_t slave_address;
     Slave_info slave_info;
-
     bool connection_status = false;
     ec_slave_config_t *sc;
     ec_slave_config_state_t sc_state;
     uint8_t *domain_i_pd = NULL;
-
-    Pdo_info *tx_pdo_list = NULL;
-    Pdo_info *rx_pdo_list = NULL;
-
-    ec_pdo_entry_reg_t *domain_regs;
+    ec_pdo_entry_reg_t *domain_i_regs;
 };
 
 #endif // ETHERCAT_SLAVE_BASE_H

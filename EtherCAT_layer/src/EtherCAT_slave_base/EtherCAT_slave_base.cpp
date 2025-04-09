@@ -30,8 +30,6 @@ uint16_t EtherCAT_slave_base::get_slave_address() const
 
 void EtherCAT_slave_base::set_slave_info() {}
 
-void EtherCAT_slave_base::get_slave_info() {}
-
 void EtherCAT_slave_base::config_slave(ec_master_t *master)
 {
     if (!(sc = ecrt_master_slave_config(master, slave_info.alias, slave_info.position, slave_info.vendor_id, slave_info.product_code)))

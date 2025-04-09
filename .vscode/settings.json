@@ -52,6 +52,15 @@
         "cstdarg": "cpp",
         "deque": "cpp",
         "bitset": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "strstream": "cpp",
+        "complex": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "ratio": "cpp",
+        "thread": "cpp",
+        "cfenv": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }
