@@ -13,7 +13,7 @@ void EtherCAT_slave_base::set_slave_name(const std::string &slave_name_)
     slave_name = slave_name_;
 }
 
-std::string EtherCAT_slave_base::&get_slave_name() const
+const std::string &EtherCAT_slave_base::get_slave_name() const
 {
     return slave_name;
 }

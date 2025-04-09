@@ -16,7 +16,7 @@ public:
     ~EtherCAT_slave_base();
 
     void set_slave_name(const std::string &slave_name_);
-    std::string &get_slave_name() const;
+    const std::string &get_slave_name() const;
     void set_slave_address(const uint16_t slave_address_);
     uint16_t get_slave_address() const;
     void set_slave_info(); // TODO
