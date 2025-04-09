@@ -34,9 +34,9 @@ private:
     bool run = false;
 
     bool stop();
+    void config_slaves_data_transfer();
     bool create_domain();
     void configure_slaves();
-    void config_slaves_data_transfer();
     void register_slaves_pdo_to_domain();
     bool activate();
     bool get_domain_process_data();
