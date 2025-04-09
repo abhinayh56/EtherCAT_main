@@ -9,7 +9,6 @@
 #include "../EtherCAT_slave_base/EtherCAT_slave_base.h"
 #include "../Common/EtherCAT_utils.h"
 
-
 #define CYCLIC_SLAVE_CALL_PARALLEL
 // #define CYCLIC_SLAVE_CALL_SEQUENTIAL
 
@@ -38,7 +37,7 @@ private:
     bool stop();
     void config_slaves_data_transfer();
     bool create_domain();
-    void configure_slaves();
+    void config_slaves();
     void register_slaves_pdo_to_domain();
     bool activate();
     bool get_domain_process_data();

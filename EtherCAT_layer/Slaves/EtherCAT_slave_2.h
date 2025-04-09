@@ -11,9 +11,9 @@ public:
 
     ~EtherCAT_slave_2() {}
 
-    void register_tx_pdo(Pdo_list *tx_pdo_list_) {}
+    void register_tx_pdo(Pdo_info *tx_pdo_list_) {}
 
-    void register_rx_pdo(Pdo_list *rx_pdo_list_) {}
+    void register_rx_pdo(Pdo_info *rx_pdo_list_) {}
 
     void config_data_transfer() {}
 
