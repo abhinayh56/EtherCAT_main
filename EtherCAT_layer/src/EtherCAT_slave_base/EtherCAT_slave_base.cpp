@@ -1,8 +1,12 @@
 #include "EtherCAT_slave_base.h"
 
-EtherCAT_slave_base::EtherCAT_slave_base(){}
+EtherCAT_slave_base::EtherCAT_slave_base()
+{
+}
 
-EtherCAT_slave_base::~EtherCAT_slave_base(){}
+EtherCAT_slave_base::~EtherCAT_slave_base()
+{
+}
 
 void EtherCAT_slave_base::set_slave_name(const std::string &slave_name_)
 {
@@ -30,8 +34,6 @@ void EtherCAT_slave_base::get_slave_info() {}
 
 void EtherCAT_slave_base::config_slave(ec_master_t *master)
 {
-    // set_slave_name(const std::string &slave_name_)
-    // set_slave_address(const uint16_t slave_address_)
     // uint16_t alias = 0;
     // uint16_t position = 9;
     // uint32_t vendor_id = 0x00113322;
