@@ -4,12 +4,18 @@
 #include <ecrt.h>
 #include <stdint.h>
 
-struct Pdo_info
+struct Pdo_variable
 {
     uint16_t index = 0;
     uint8_t subindex = 0;
     uint32_t *offset = nullptr;
     bool is_supported = false;
+};
+
+template <typename T>
+struct PDO_info : public Pdo_variable
+{
+    T value;
 };
 
 struct Slave_info
