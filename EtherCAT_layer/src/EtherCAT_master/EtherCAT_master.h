@@ -9,6 +9,7 @@
 #include "../EtherCAT_slave_base/EtherCAT_slave_base.h"
 #include "../Common/EtherCAT_utils.h"
 
+
 #define CYCLIC_SLAVE_CALL_PARALLEL
 // #define CYCLIC_SLAVE_CALL_SEQUENTIAL
 

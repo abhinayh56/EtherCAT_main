@@ -53,6 +53,5 @@
         "deque": "cpp",
         "bitset": "cpp",
         "span": "cpp"
-    },
-    "cmake.sourceDirectory": "/home/abhinayh56/Abhinay/Ethercat_IGH/EtherCAT_main/EtherCAT_layer"
+    }
 }
