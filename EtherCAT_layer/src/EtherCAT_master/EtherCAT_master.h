@@ -7,6 +7,7 @@
 #include "Data_transfer.h"
 #include "../Logger/Logger_console/Logger_console.h"
 #include "../EtherCAT_slave_base/EtherCAT_slave_base.h"
+#include "../Common/EtherCAT_utils.h"
 
 #define CYCLIC_SLAVE_CALL_PARALLEL
 // #define CYCLIC_SLAVE_CALL_SEQUENTIAL
@@ -41,7 +42,7 @@ private:
     bool activate();
     bool get_domain_process_data();
     void set_domain_process_data();
-    
+
     void monitor_status();
     void transfer_tx_pdo();
     void process_tx_pdo();

@@ -42,6 +42,8 @@ void EtherCAT_master::config()
     config_slaves_data_transfer();
     create_domain();
     config_slaves();
+    register_tx_pdo(Pdo_variable *tx_pdo_list);
+    register_rx_pdo(Pdo_variable *rx_pdo_list);
     register_slaves_pdo_to_domain();
     activate();
     get_domain_process_data();

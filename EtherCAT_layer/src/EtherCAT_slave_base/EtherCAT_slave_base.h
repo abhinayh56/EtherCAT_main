@@ -14,6 +14,10 @@ struct Slave_info
     uint16_t position;
     uint32_t vendor_id;
     uint32_t product_code;
+
+    Rx_pdo *rx_pdo;
+    Tx_pdo *tx_pdo;
+
     ec_pdo_entry_info_t *slave_pdo_entries;
     ec_pdo_info_t *slave_pdos;
     ec_sync_info_t *slave_syncs;
