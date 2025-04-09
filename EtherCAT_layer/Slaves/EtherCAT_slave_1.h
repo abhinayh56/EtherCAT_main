@@ -8,22 +8,22 @@ class EtherCAT_slave_1 : public EtherCAT_slave_base
 {
 public:
     EtherCAT_slave_1() {};
-    
+
     ~EtherCAT_slave_1() {}
 
-    virtual void register_tx_pdo() {}
+    void register_tx_pdo(Pdo_list *tx_pdo_list_) {}
 
-    virtual void register_rx_pdo() {}
+    void register_rx_pdo(Pdo_list *rx_pdo_list_) {}
 
-    virtual void config_data_transfer() {}
+    void config_data_transfer() {}
 
-    virtual void process_tx_pdo() {}
+    void process_tx_pdo() {}
 
-    virtual void process_rx_pdo() {}
+    void process_rx_pdo() {}
 
-    virtual void publish_data() {}
+    void publish_data() {}
 
-    virtual void subscribe_data() {}
+    void subscribe_data() {}
 };
 
 #endif // ETHERCAT_SLAVE_1_H
