@@ -61,7 +61,7 @@ bool EtherCAT_slave_base::is_connected()
 
 void EtherCAT_slave_base::register_pdo_to_domain(ec_domain_t *domain_i)
 {
-    if (ecrt_domain_reg_pdo_entry_list(domain_i, domain_regs))
+    if (ecrt_domain_reg_pdo_entry_list(domain_i, slave_info.domain_i_regs))
     {
         fprintf(stderr, "PDO entry registration failed!\n");
     }

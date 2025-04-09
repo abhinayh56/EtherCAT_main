@@ -22,6 +22,7 @@ struct Slave_info
     ec_pdo_entry_info_t *slave_pdo_entries;
     ec_pdo_info_t *slave_pdos;
     ec_sync_info_t *slave_syncs;
+    ec_pdo_entry_reg_t *domain_i_regs;
 };
 
 #endif // ETHERCAT_UTILS_H
