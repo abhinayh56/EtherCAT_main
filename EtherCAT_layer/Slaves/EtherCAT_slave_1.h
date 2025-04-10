@@ -7,13 +7,17 @@
 class EtherCAT_slave_1 : public EtherCAT_slave_base
 {
 public:
-    EtherCAT_slave_1() {};
+    EtherCAT_slave_1(const uint16_t slave_address_, const std::string &slave_name_)
+    {
+        slave_address = slave_address_;
+        slave_name = slave_name_;
+    }
 
     ~EtherCAT_slave_1() {}
-    
-    void register_tx_pdo(Pdo_info *tx_pdo_list_) {}
 
-    void register_rx_pdo(Pdo_info *rx_pdo_list_) {}
+    void register_tx_pdo() {}
+
+    void register_rx_pdo() {}
 
     void config_data_transfer() {}
 
