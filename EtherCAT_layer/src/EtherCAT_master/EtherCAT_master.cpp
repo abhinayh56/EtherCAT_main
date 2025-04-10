@@ -165,6 +165,11 @@ void EtherCAT_master::register_slaves_pdo_to_domain()
         LOG_CONSOLE_INFO(i, 0);
         LOG_CONSOLE_INFO(" of ", 0);
         LOG_CONSOLE_INFO(num_slaves, 1);
+        LOG_CONSOLE_INFO("Registering tx_pdos", 1);
+        slave_base_arr[i]->register_tx_pdo();
+        LOG_CONSOLE_INFO("Registering rx_pdos", 1);
+        slave_base_arr[i]->register_rx_pdo();
+        LOG_CONSOLE_INFO("Registering tx,rx_pdos to domain", 1);
         slave_base_arr[i]->register_pdo_to_domain(domain_i);
     }
     LOG_CONSOLE_INFO("Registered all pdos", 1);
