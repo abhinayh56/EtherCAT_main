@@ -29,8 +29,8 @@ public:
     void transfer_rx_pdo(); // TODO
     virtual void process_tx_pdo() = 0;
     virtual void process_rx_pdo() = 0;
-    virtual void register_tx_pdo(Pdo_variable *tx_pdo_list_) = 0;
-    virtual void register_rx_pdo(Pdo_variable *rx_pdo_list_) = 0;
+    virtual void register_tx_pdo() = 0;
+    virtual void register_rx_pdo() = 0;
 
 protected:
     std::string slave_name;
