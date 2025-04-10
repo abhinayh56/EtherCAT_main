@@ -1,0 +1,2 @@
+/usr/bin/ar qc libethercat_master.a CMakeFiles/ethercat_master.dir/EtherCAT_master.cpp.o
+/usr/bin/ranlib libethercat_master.a

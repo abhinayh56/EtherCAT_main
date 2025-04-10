@@ -7,7 +7,11 @@
 class EtherCAT_slave_2 : public EtherCAT_slave_base
 {
 public:
-    EtherCAT_slave_2() {};
+    EtherCAT_slave_2(const uint16_t slave_address_, const std::string &slave_name_)
+    {
+        slave_address = slave_address_;
+        slave_name = slave_name_;
+    }
 
     ~EtherCAT_slave_2() {}
 

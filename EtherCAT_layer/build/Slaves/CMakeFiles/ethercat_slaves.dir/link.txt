@@ -1,0 +1,2 @@
+/usr/bin/ar qc libethercat_slaves.a CMakeFiles/ethercat_slaves.dir/EtherCAT_slave_1.cpp.o CMakeFiles/ethercat_slaves.dir/EtherCAT_slave_2.cpp.o
+/usr/bin/ranlib libethercat_slaves.a

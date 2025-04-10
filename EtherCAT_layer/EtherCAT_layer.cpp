@@ -1,13 +1,13 @@
 #include <unistd.h>
 #include <iostream>
-#include "EtherCAT_master/EtherCAT_master.h"
+#include "src/EtherCAT_master/EtherCAT_master.h"
 #include "Slaves/EtherCAT_slave_1.h"
 #include "Slaves/EtherCAT_slave_2.h"
 
 EtherCAT_master ec_master;
 
-EtherCAT_slave_1 slave_1;
-EtherCAT_slave_2 slave_2;
+EtherCAT_slave_1 slave_1(0, "SLAVE_1");
+EtherCAT_slave_2 slave_2(1, "SLAVE_2");
 
 int main()
 {
