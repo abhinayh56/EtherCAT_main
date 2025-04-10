@@ -22,6 +22,9 @@ public:
     void set_slave_info(); // TODO
     void config_slave(ec_master_t *master);
     bool is_connected();
+
+    virtual void register_tx_pdo() = 0;
+    virtual void register_rx_pdo() = 0;
     void register_pdo_to_domain(ec_domain_t *domain_i); // TODO
     void set_domain(uint8_t *domain_i_pd_);
     void monitor_status();  // TODO
@@ -29,8 +32,6 @@ public:
     void transfer_rx_pdo(); // TODO
     virtual void process_tx_pdo() = 0;
     virtual void process_rx_pdo() = 0;
-    virtual void register_tx_pdo() = 0;
-    virtual void register_rx_pdo() = 0;
 
 protected:
     std::string slave_name;

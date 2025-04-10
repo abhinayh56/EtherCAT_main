@@ -12,12 +12,6 @@ struct Pdo_variable
     bool is_supported = false;
 };
 
-template <typename T>
-struct PDO_info : public Pdo_variable
-{
-    T value;
-};
-
 struct Slave_info
 {
     uint16_t alias;
