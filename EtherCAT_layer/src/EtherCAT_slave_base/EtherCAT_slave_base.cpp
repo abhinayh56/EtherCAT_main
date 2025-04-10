@@ -28,7 +28,17 @@ uint16_t EtherCAT_slave_base::get_slave_address() const
     return slave_address;
 }
 
-void EtherCAT_slave_base::set_slave_info() {}
+void EtherCAT_slave_base::set_slave_info()
+{
+    // read eni.xml file and populate all members of slave_info. i.e.
+    // slave_info.alias
+    // slave_info.position
+    // slave_info.vendor_id
+    // slave_info.product_code
+    // slave_info.slave_pdo_entries
+    // slave_info.slave_pdos
+    // slave_info.slave_syncs
+}
 
 void EtherCAT_slave_base::config_slave(ec_master_t *master)
 {
@@ -59,7 +69,7 @@ bool EtherCAT_slave_base::is_connected()
 
 void EtherCAT_slave_base::register_pdo_to_domain(ec_domain_t *domain_i)
 {
-    if (ecrt_domain_reg_pdo_entry_list(domain_i, slave_info.domain_i_regs))
+    if (ecrt_domain_reg_pdo_entry_list(domain_i, domain_i_regs))
     {
         fprintf(stderr, "PDO entry registration failed!\n");
     }
